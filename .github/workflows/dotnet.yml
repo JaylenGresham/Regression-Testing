@@ -17,8 +17,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Build and test
         run: |
-          BucStop build
-          BucStop test --logger "junit;LogFilePath=results/tests.xml"
+          ./BucStop/BucStop.csproj build
+          ./BucStop/BucStop.csproj test --logger "junit;LogFilePath=results/tests.xml"
       - name: Create test summary
         uses: test-summary/action@dist
         with:
