@@ -31,7 +31,7 @@ jobs:
         run: dotnet build ./BucStop/BucStop.csproj
       
       - name: Run Project
-        run: dotnet run --BucStop ./BucStop/BucStop.csproj
+        run: dotnet run --project ./BucStop/BucStop.csproj
         
       - name: Test project
         run: dotnet test ./BucStop/BucStop.csproj --logger "junit;LogFilePath=results/tests.xml"
