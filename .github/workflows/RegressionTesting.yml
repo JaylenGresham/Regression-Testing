@@ -20,6 +20,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0'
+
+      - name: Add Selenium Package
+        run: dotnet add ./BucStop/BucStop.csproj package Selenium.WebDriver
           
       - name: Restore dependencies
         run: dotnet restore ./BucStop/BucStop.csproj
@@ -28,7 +31,7 @@ jobs:
         run: chmod +x ./BucStop/BucStop.csproj
         
       - name: Build
-        run: dotnet build ./BucStop/BucStop.csproj package Selenium.WebDriver
+        run: dotnet build ./BucStop/BucStop.csproj
       
       - name: Run Project
         run: dotnet run --project ./BucStop/BucStop.csproj
