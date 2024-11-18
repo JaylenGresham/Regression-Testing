@@ -22,7 +22,7 @@ jobs:
           dotnet-version: '6.0'
           
       - name: Restore dependencies
-        run: dotnet restore BucStop.csproj
+        run: dotnet restore ./BucStop/BucStop.csproj
         
       - name: Build
         run: dotnet build ./BucStop/BucStop.csproj build
