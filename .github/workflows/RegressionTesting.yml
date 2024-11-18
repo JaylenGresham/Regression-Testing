@@ -1,4 +1,4 @@
-name: Build and Test .NET Core
+name: Regression Testing
 
 on:
   push:
