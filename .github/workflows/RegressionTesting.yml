@@ -51,7 +51,7 @@ jobs:
         run: dotnet run --project ./BucStop/BucStop.csproj
         
       - name: Test project
-        run: dotnet test ./BucStop/BucStop.csproj --logger "junit;LogFilePath=TestResults/test-results.xml"
+        run: dotnet test ./BucStop/BucStop.csproj --logger "junit;LogFilePath=BucStop/test-results.xml"
 
       - name: Debug Environment
         run: |
