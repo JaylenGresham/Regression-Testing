@@ -23,13 +23,13 @@ jobs:
           
       - name: Restore dependencies
         run: dotnet restore ./BucStop/BucStop.csproj
+      
+      - name: Set permissions (optional)
+        run: chmod +x ./YourProject.csproj 
         
       - name: Build
         run: dotnet build ./BucStop/BucStop.csproj build
       
-      - name: Set permissions (optional)
-        run: chmod +x ./YourProject.csproj
-
       - name: Run Project
         run: dotnet run ./BucStop/BucStop.csproj
         
