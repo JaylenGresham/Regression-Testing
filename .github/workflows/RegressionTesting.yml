@@ -20,20 +20,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0'
-      - name: Install curl
-        run: sudo apt-get update && sudo apt-get install -y curl
-      
-      - name: Install Chrome
-        run: sudo apt-get install -y google-chrome-stable
-
-      - name: Install ChromeDriver
-        run: |
-          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip -d $HOME/bin
-          rm chromedriver_linux64.zip
-        env:
-          PATH: $HOME/bin:$PATH     
+      - name: Verify ChromeDriver version
+        run: chromedriver --version  
           
       - name: Add Selenium Package
         run: dotnet add ./BucStop/BucStop.csproj package Selenium.WebDriver
