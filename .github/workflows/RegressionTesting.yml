@@ -22,19 +22,15 @@ jobs:
           dotnet-version: '6.0'
         
       - name: Install curl
-        run: sudo apt-get update && sudo apt-get install -y curl
+        run: |
+          sudo apt-get update 
+          sudo apt-get install -y curl || echo "curl is already installed"
 
       - name: Install Chrome
-        run: sudo apt-get install -y google-chrome-stable
+        run: sudo apt-get install -y google-chrome-stable || echo "Chrome is already installed"
 
-      - name: Install ChromeDriver
-        run: |
-          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip -d $HOME/bin
-          rm chromedriver_linux64.zip
-        env:
-          PATH: $HOME/bin:$PATH
+      - name: Verify ChromeDriver version
+        run: chromedriver --version || echo "Using pre-installed ChromeDriver"
     
       - name: Verify ChromeDriver version
         run: chromedriver --version  
@@ -49,7 +45,7 @@ jobs:
         run: chmod +x ./BucStop/BucStop.csproj
         
       - name: Build
-        run: dotnet build ./BucStop/BucStop.csproj
+        run: dotnet build ./BucStop/BucStop.csproj --configuration Release
       
       - name: Run Project
         run: dotnet run --project ./BucStop/BucStop.csproj
