@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./BucStop/BucStop.csproj
         
       - name: Build
-        run: dotnet build ./BucStop/BucStop.csproj
+        run: dotnet build ./BucStop/BucStop.csproj package Selenium.WebDriver
       
       - name: Run Project
         run: dotnet run --project ./BucStop/BucStop.csproj
