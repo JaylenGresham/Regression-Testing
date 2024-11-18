@@ -20,6 +20,22 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0'
+        
+      - name: Install curl
+        run: sudo apt-get update && sudo apt-get install -y curl
+
+      - name: Install Chrome
+        run: sudo apt-get install -y google-chrome-stable
+
+      - name: Install ChromeDriver
+        run: |
+          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip -d $HOME/bin
+          rm chromedriver_linux64.zip
+        env:
+          PATH: $HOME/bin:$PATH
+    
       - name: Verify ChromeDriver version
         run: chromedriver --version  
           
@@ -39,16 +55,18 @@ jobs:
         run: dotnet run --project ./BucStop/BucStop.csproj
         
       - name: Test project
-        run: dotnet test ./BucStop/BucStop.csproj --logger "junit;LogFilePath=./BucStop/FirstTestTest.cs"
+        run: dotnet test ./BucStop/FirstTestTest --logger "junit;LogFilePath=TestResults/test-results.xml"
 
       - name: Debug Environment
         run: |
             ls -l
             dotnet --version
+            google-chrome --version
+            chromedriver --version
             pwd
 
       - name: Create test summary
         uses: test-summary/action@dist
         with:
-          paths: results/**/*.xml
+          paths: TestResults/test-results.xml
         if: always()
