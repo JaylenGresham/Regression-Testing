@@ -28,13 +28,13 @@ jobs:
         run: chmod +x ./BucStop/BucStop.csproj
         
       - name: Build
-        run: dotnet build ./BucStop/BucStop.csproj build
+        run: dotnet build ./BucStop/BucStop.csproj
       
       - name: Run Project
         run: dotnet run ./BucStop/BucStop.csproj
         
       - name: Test project
-        run: dotnet test ./BucStop/BucStop.csproj test "junit;LogFilePath=results/tests.xml"
+        run: dotnet test ./BucStop/BucStop.csproj --logger "junit;LogFilePath=results/tests.xml"
 
       - name: Debug Environment
         run: |
