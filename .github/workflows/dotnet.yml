@@ -14,11 +14,34 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Build and test
+        uses: actions/checkout@v3
+        
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0'
+          
+      - name: Restore dependencies
+        run: dotnet restore BucStop.csproj
+        
+      - name: Build
+        run: dotnet build ./BucStop/BucStop.csproj build
+      
+      - name: Set permissions (optional)
+        run: chmod +x ./YourProject.csproj
+
+      - name: Run Project
+        run: dotnet run ./BucStop/BucStop.csproj
+        
+      - name: Test project
+        run: dotnet test ./BucStop/BucStop.csproj test "junit;LogFilePath=results/tests.xml"
+
+      - name: Debug Environment
         run: |
-          ./BucStop/BucStop.csproj build
-          ./BucStop/BucStop.csproj test --logger "junit;LogFilePath=results/tests.xml"
+            ls -l
+            dotnet --version
+            pwd
+
       - name: Create test summary
         uses: test-summary/action@dist
         with:
