@@ -64,5 +64,5 @@ jobs:
       - name: Create test summary
         uses: test-summary/action@dist
         with:
-          paths: TestResults/test-results.xml
+          paths: BucStop/Results.xml
         if: always()
