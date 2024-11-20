@@ -10,8 +10,6 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using Xunit;
-namespace Regression.Tests
-{
     public class SuiteTests : IDisposable
     {
         public IWebDriver driver { get; private set; }
@@ -60,4 +58,3 @@ namespace Regression.Tests
             }
         }
     }
-}
