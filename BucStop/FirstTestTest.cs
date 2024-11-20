@@ -24,7 +24,7 @@ namespace Regression.Tests
             js = (IJavaScriptExecutor)driver;
             vars = new Dictionary<String, Object>();
 
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10)
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
         public void Dispose()
         {
