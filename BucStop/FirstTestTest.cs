@@ -39,21 +39,4 @@ using Xunit;
             driver.FindElement(By.CssSelector(".col-sm-4:nth-child(1) .overlay")).Click();
             driver.FindElement(By.CssSelector("img")).Click();
         }
-
-        private void ClickElement(By by)
-        {
-            try
-            {
-                var element = Driver.FindElement(by);
-                element.Click();
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.True(false, $"Element not found: {by}");
-            }
-            catch (ElementClickInterceptedException)
-            {
-                Assert.True(false, $"Element could not be clicked: {by}");
-            }
-        }
     }
