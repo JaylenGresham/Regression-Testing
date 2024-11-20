@@ -59,4 +59,5 @@ namespace Regression.Tests
                 Assert.True(false, $"Element could not be clicked: {by}");
             }
         }
+    }
 }
